@@ -33,7 +33,8 @@ public class SidePanel extends JPanel {
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		g.setFont(LARGE_FONT);
-		g.drawString("Snake Game", getWidth() / 2 - g.getFontMetrics().stringWidth("Snake Game") / 2, 50);
+		g.drawString("Snake Game",
+				getWidth() / 2 - g.getFontMetrics().stringWidth("Snake Game") / 2, 50);
 		g.setFont(MEDIUM_FONT);
 		g.drawString("Statistics", SMALL_OFFSET, STATISTICS_OFFSET);
 		g.drawString("Controls", SMALL_OFFSET, CONTROLS_OFFSET);
@@ -43,10 +44,10 @@ public class SidePanel extends JPanel {
 		g.drawString("Fruit Eaten: " + game.getFruitsEaten(), LARGE_OFFSET, drawY += MESSAGE_STRIDE);
 		g.drawString("Fruit Score: " + game.getNextFruitScore(), LARGE_OFFSET, drawY += MESSAGE_STRIDE);
 		drawY = CONTROLS_OFFSET;
-		g.drawString("Move Up: W / Up Arrowkey", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
-		g.drawString("Move Down: S / Down Arrowkey", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
-		g.drawString("Move Left: A / Left Arrowkey", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
-		g.drawString("Move Right: D / Right Arrowkey", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
+		g.drawString("Move Up: W / Up Arrow", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
+		g.drawString("Move Down: S / Down Arrow", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
+		g.drawString("Move Left: A / Left Arrow", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
+		g.drawString("Move Right: D / Right Arrow", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
 		g.drawString("Pause Game: P", LARGE_OFFSET, drawY += MESSAGE_STRIDE);
 	}
 }

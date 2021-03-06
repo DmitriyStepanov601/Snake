@@ -55,6 +55,7 @@ public class Field extends JPanel {
 				}
 			}
 		}
+
 		g.setColor(Color.DARK_GRAY);
 		g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
 		for(int x = 0; x < COL_COUNT; x++) {
@@ -63,6 +64,7 @@ public class Field extends JPanel {
 				g.drawLine(0, y * TILE_SIZE, getWidth(), y * TILE_SIZE);
 			}
 		}
+
 		if(game.isGameOver() || game.isNewGame() || game.isPaused()) {
 			g.setColor(Color.WHITE);
 			int centerX = getWidth() / 2;
@@ -80,52 +82,62 @@ public class Field extends JPanel {
 				smallMessage = "Press P to Resume";
 			}
 			g.setFont(FONT);
-			g.drawString(largeMessage, centerX - g.getFontMetrics().stringWidth(largeMessage) / 2, centerY - 50);
-			g.drawString(smallMessage, centerX - g.getFontMetrics().stringWidth(smallMessage) / 2, centerY + 50);
+			g.drawString(largeMessage, centerX - g.getFontMetrics().stringWidth(largeMessage) / 2,
+					centerY - 50);
+			g.drawString(smallMessage, centerX - g.getFontMetrics().stringWidth(smallMessage) / 2,
+					centerY + 50);
 		}
 	}
 
 	private void drawTile(int x, int y, TileType type, Graphics g) {
 		switch(type) {
-		case Fruit:
-			g.setColor(Color.RED);
-			g.fillOval(x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4);
-			break;
-		case SnakeBody:
-			g.setColor(Color.GREEN);
-			g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
-			break;
-		case SnakeHead:
-			g.setColor(Color.GREEN);
-			g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
-			g.setColor(Color.BLACK);
-			switch(game.getDirection()) {
-			case North: {
-				int baseY = y + EYE_SMALL_INSET;
-				g.drawLine(x + EYE_LARGE_INSET, baseY, x + EYE_LARGE_INSET, baseY + EYE_LENGTH);
-				g.drawLine(x + TILE_SIZE - EYE_LARGE_INSET, baseY, x + TILE_SIZE - EYE_LARGE_INSET, baseY + EYE_LENGTH);
+			case Fruit:
+				g.setColor(Color.RED);
+				g.fillOval(x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4);
 				break;
-			}
-			case South: {
-				int baseY = y + TILE_SIZE - EYE_SMALL_INSET;
-				g.drawLine(x + EYE_LARGE_INSET, baseY, x + EYE_LARGE_INSET, baseY - EYE_LENGTH);
-				g.drawLine(x + TILE_SIZE - EYE_LARGE_INSET, baseY, x + TILE_SIZE - EYE_LARGE_INSET, baseY - EYE_LENGTH);
+			case SnakeBody:
+				g.setColor(Color.GREEN);
+				g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
 				break;
-			}
-			case West: {
-				int baseX = x + EYE_SMALL_INSET;
-				g.drawLine(baseX, y + EYE_LARGE_INSET, baseX + EYE_LENGTH, y + EYE_LARGE_INSET);
-				g.drawLine(baseX, y + TILE_SIZE - EYE_LARGE_INSET, baseX + EYE_LENGTH, y + TILE_SIZE - EYE_LARGE_INSET);
+			case SnakeHead:
+				g.setColor(Color.GREEN);
+				g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+				g.setColor(Color.BLACK);
+				switch(game.getDirection()) {
+					case North: {
+						int baseY = y + EYE_SMALL_INSET;
+						g.drawLine(x + EYE_LARGE_INSET, baseY, x + EYE_LARGE_INSET,
+								baseY + EYE_LENGTH);
+						g.drawLine(x + TILE_SIZE - EYE_LARGE_INSET, baseY,
+								x + TILE_SIZE - EYE_LARGE_INSET, baseY + EYE_LENGTH);
+						break;
+					}
+					case South: {
+						int baseY = y + TILE_SIZE - EYE_SMALL_INSET;
+						g.drawLine(x + EYE_LARGE_INSET, baseY, x + EYE_LARGE_INSET,
+								baseY - EYE_LENGTH);
+						g.drawLine(x + TILE_SIZE - EYE_LARGE_INSET, baseY,
+								x + TILE_SIZE - EYE_LARGE_INSET, baseY - EYE_LENGTH);
+						break;
+					}
+					case West: {
+						int baseX = x + EYE_SMALL_INSET;
+						g.drawLine(baseX, y + EYE_LARGE_INSET, baseX + EYE_LENGTH,
+								y + EYE_LARGE_INSET);
+						g.drawLine(baseX, y + TILE_SIZE - EYE_LARGE_INSET,
+								baseX + EYE_LENGTH, y + TILE_SIZE - EYE_LARGE_INSET);
+						break;
+					}
+					case East: {
+						int baseX = x + TILE_SIZE - EYE_SMALL_INSET;
+						g.drawLine(baseX, y + EYE_LARGE_INSET, baseX - EYE_LENGTH,
+								y + EYE_LARGE_INSET);
+						g.drawLine(baseX, y + TILE_SIZE - EYE_LARGE_INSET, baseX - EYE_LENGTH,
+								y + TILE_SIZE - EYE_LARGE_INSET);
+						break;
+					}
+				}
 				break;
-			}
-			case East: {
-				int baseX = x + TILE_SIZE - EYE_SMALL_INSET;
-				g.drawLine(baseX, y + EYE_LARGE_INSET, baseX - EYE_LENGTH, y + EYE_LARGE_INSET);
-				g.drawLine(baseX, y + TILE_SIZE - EYE_LARGE_INSET, baseX - EYE_LENGTH, y + TILE_SIZE - EYE_LARGE_INSET);
-				break;
-			}
-			}
-			break;
 		}
 	}
 }

@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -59,65 +58,61 @@ public class Snake extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				switch(e.getKeyCode()) {
-				case KeyEvent.VK_W:
-				case KeyEvent.VK_UP:
-					if(!isPaused && !isGameOver) {
-						if(directions.size() < MAX_DIRECTIONS) {
-							Direction last = directions.peekLast();
-
-							if(last != Direction.South && last != Direction.North) {
-								directions.addLast(Direction.North);
+					case KeyEvent.VK_W:
+					case KeyEvent.VK_UP:
+						if(!isPaused && !isGameOver) {
+							if(directions.size() < MAX_DIRECTIONS) {
+								Direction last = directions.peekLast();
+								if(last != Direction.South && last != Direction.North) {
+									directions.addLast(Direction.North);
+								}
 							}
 						}
-					}
-					break;
-				case KeyEvent.VK_S:
-				case KeyEvent.VK_DOWN:
-					if(!isPaused && !isGameOver) {
-						if(directions.size() < MAX_DIRECTIONS) {
-							Direction last = directions.peekLast();
-
-							if(last != Direction.North && last != Direction.South) {
-								directions.addLast(Direction.South);
+						break;
+					case KeyEvent.VK_S:
+					case KeyEvent.VK_DOWN:
+						if(!isPaused && !isGameOver) {
+							if(directions.size() < MAX_DIRECTIONS) {
+								Direction last = directions.peekLast();
+								if(last != Direction.North && last != Direction.South) {
+									directions.addLast(Direction.South);
+								}
 							}
 						}
-					}
-					break;
-				case KeyEvent.VK_A:
-				case KeyEvent.VK_LEFT:
-					if(!isPaused && !isGameOver) {
-						if(directions.size() < MAX_DIRECTIONS) {
-							Direction last = directions.peekLast();
-
-							if(last != Direction.East && last != Direction.West) {
-								directions.addLast(Direction.West);
+						break;
+					case KeyEvent.VK_A:
+					case KeyEvent.VK_LEFT:
+						if(!isPaused && !isGameOver) {
+							if(directions.size() < MAX_DIRECTIONS) {
+								Direction last = directions.peekLast();
+								if(last != Direction.East && last != Direction.West) {
+									directions.addLast(Direction.West);
+								}
 							}
 						}
-					}
-					break;
-				case KeyEvent.VK_D:
-				case KeyEvent.VK_RIGHT:
-					if(!isPaused && !isGameOver) {
-						if(directions.size() < MAX_DIRECTIONS) {
-							Direction last = directions.peekLast();
-
-							if(last != Direction.West && last != Direction.East) {
-								directions.addLast(Direction.East);
+						break;
+					case KeyEvent.VK_D:
+					case KeyEvent.VK_RIGHT:
+						if(!isPaused && !isGameOver) {
+							if(directions.size() < MAX_DIRECTIONS) {
+								Direction last = directions.peekLast();
+								if(last != Direction.West && last != Direction.East) {
+									directions.addLast(Direction.East);
+								}
 							}
 						}
-					}
-					break;
-				case KeyEvent.VK_P:
-					if(!isGameOver) {
-						isPaused = !isPaused;
-						logicTimer.setPaused(isPaused);
-					}
-					break;
-				case KeyEvent.VK_ENTER:
-					if(isNewGame || isGameOver) {
-						resetGame();
-					}
-					break;
+						break;
+					case KeyEvent.VK_P:
+						if(!isGameOver) {
+							isPaused = !isPaused;
+							logicTimer.setPaused(isPaused);
+						}
+						break;
+					case KeyEvent.VK_ENTER:
+						if(isNewGame || isGameOver) {
+							resetGame();
+						}
+						break;
 				}
 			}
 		});
@@ -154,7 +149,6 @@ public class Snake extends JFrame {
 
 	private void updateGame() {
 		TileType collision = updateSnake();
-
 		if(collision == TileType.Fruit) {
 			fruitsEaten++;
 			score += nextFruitScore;
@@ -234,7 +228,6 @@ public class Snake extends JFrame {
 		this.nextFruitScore = 100;
 		int index = random.nextInt(Field.COL_COUNT * Field.ROW_COUNT - snake.size());
 		int freeFound = -1;
-
 		for(int x = 0; x < Field.COL_COUNT; x++) {
 			for(int y = 0; y < Field.ROW_COUNT; y++) {
 				TileType type = board.getTile(x, y);
